@@ -1,0 +1,57 @@
+@font-face {
+  font-family: 'OpenSans';
+  src: local('Quicksand'), local('quicksand'), url('/fonts/Quicksand.ttf') format('truetype')
+}
+
+:root {
+  --font-family: Quicksand;
+  --font-size-small: 20px;
+  --font-size-smaller: 16px;
+  --font-size-large: 28px;
+  --font-size-larger: 32px;
+  --color-principal: hsl(121, 50%, 60%);
+  --color-secondary: hsl(301, 50%, 60%);
+  --color-principal-light: hsl(121, 50%, 60%, 0.4);
+  --color-secondary-light: hsl(301, 50%, 60%, 0.4);
+  --color-text: hsl(0, 0%, 20%);
+  --color-text-light: hsl(0, 0%, 20%, 0.4);
+  --color-text-lighter: hsl(0, 0%, 20%, 0.1);
+}
+
+* {
+  font-family: var(--font-family);
+  font-size: 24px;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+}
+
+article {
+  position: relative;
+}
+
+button {
+  display: flex;
+  height: 48px;
+  width: 48px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  background-color: transparent;
+  cursor: pointer;
+  border: solid 1px var(--color-text-lighter);
+  outline: none;
+  box-shadow: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+button:active i {
+  color: var(--color-text-light);
+  font-size: 95%;
+}
