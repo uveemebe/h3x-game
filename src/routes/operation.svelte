@@ -1,10 +1,9 @@
 <script>
-  import { challenge } from "$lib/stores/challenge";
+  import { challenge } from "$lib/stores/challenge.js";
 
   export let operation;
   const handleClick = () => {
-    operation.click();
-    challenge.update(() => operation.challenge);
+    challenge.update(() => operation.click());
   }
 </script>
 
@@ -16,12 +15,12 @@
 
 <style>
   button {
-    height: 48px;
-    width: 48px;
+    pointer-events: none;
     transition: background-color 200ms;
     color: var(--color-text-light);
   }
   button.enabled {
+    pointer-events: all;
     color: var(--color-text);
   }
   button.selected {

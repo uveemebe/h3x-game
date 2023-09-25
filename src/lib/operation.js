@@ -26,11 +26,12 @@ export class Operation extends Statable {
     }
     set hexagon(hexagon) {
         this._hexagon = hexagon;
-        this.enabled = this._hexagon;
+        this.enabled = this._hexagon?.adjacents.find((hexagon) => hexagon.enabled);
     }
 
     click() {
         this.selected ? this.deselect() : this.select();
+        return this.challenge;
     }
 
     select() {

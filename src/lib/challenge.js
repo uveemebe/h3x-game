@@ -1,5 +1,5 @@
-import { Hexagon } from "$lib/hexagon";
-import { Operation } from "$lib/operation";
+import { Hexagon } from "$lib/hexagon.js";
+import { Operation } from "$lib/operation.js";
 
 export class Challenge {
 

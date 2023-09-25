@@ -25,6 +25,7 @@ export class Hexagon extends Statable {
 
     click() {
         this.selected ? this.deselect() : this.select();
+        return this.challenge;
     }
 
     deselect() {
@@ -85,7 +86,7 @@ export class Hexagon extends Statable {
     }
 
     toString() {
-        return `${this.index}: ${this.state}`;
+        return `${this.index} (${this.value}): ${this.state}`;
     }
 
 }

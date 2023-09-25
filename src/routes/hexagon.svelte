@@ -1,11 +1,10 @@
 <script>
   import { fade } from "svelte/transition";
-  import { challenge } from "$lib/stores/challenge";
+  import { challenge } from "$lib/stores/challenge.js";
 
   export let hexagon;
   const handleClick = () => {
-    hexagon.click();
-    challenge.update(() => hexagon.challenge);
+    challenge.update(() => hexagon.click());
   }
 </script>
 
