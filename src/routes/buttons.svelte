@@ -31,7 +31,7 @@
   {#each operations as operation}
     <Operation operation={operation}></Operation>
   {/each}
-  <button disabled={$localStorageChallenges.length === 0 && !$challenge.changed} on:click={resetClick} on:mousedown={startResetClick} on:touchstart={startResetClick} on:mouseup={endResetClick} on:touchend={endResetClick}><i class="material-icons">replay</i></button>
+  <button disabled={$localStorageChallenges.length === 0 && !$challenge.selectedHexagon} on:click={resetClick} on:mousedown={startResetClick} on:touchstart={startResetClick} on:mouseup={endResetClick} on:touchend={endResetClick}><i class="material-icons">replay</i></button>
 </div>
 
 <style>

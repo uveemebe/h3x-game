@@ -8,7 +8,6 @@ export const challenge = writable(new Challenge(localStorageChallenge ?? challen
 challenge.subscribe((challenge) => {
     if (challenge.save) {
         challenge.save = false;
-        challenge.changed = false;
         const challenges = JSON.parse(localStorage.challenges ?? "[]");
         localStorageChallenges.update(() => JSON.parse(JSON.stringify([...challenges, challenge])));
     }

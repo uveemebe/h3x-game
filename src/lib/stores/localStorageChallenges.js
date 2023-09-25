@@ -9,7 +9,7 @@ localStorageChallenges.subscribe((localStorageChallenges) => {
 
 export const getPreviousChallenge = (challenge, challenges) => {
   let localStorageChallenge;
-  if (challenge.changed) {
+  if (challenge.selectedHexagon) {
     localStorageChallenge = challenges[challenges.length - 1] ?? challengeData;
   } else {
     challenges.pop();

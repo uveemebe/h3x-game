@@ -18,15 +18,14 @@ export class Operation extends Statable {
         this.name = data.name;
         this.calculate = OPERATION[data.name].calculate;
         this.operator = OPERATION[data.name].operator;
-        this._hexagon = this.challenge.selectedHexagon;
     }
 
-    get hexagon() {
-        return this._hexagon;
+    get selectedHexagon() {
+        return this.challenge.selectedHexagon;
     }
-    set hexagon(hexagon) {
-        this._hexagon = hexagon;
-        this.enabled = this._hexagon?.adjacents.find((hexagon) => hexagon.enabled);
+    get state() {
+        this.enabled = this.challenge.selectedOperation || this.selectedHexagon?.adjacents.find((hexagon) => hexagon.enabled);
+        return super.state;
     }
 
     click() {
@@ -37,14 +36,14 @@ export class Operation extends Statable {
     select() {
         this.challenge.operations.forEach((operation) => operation.deselect());
         this.selected = true;
-        this.hexagon.nonAdjacents.forEach((hexagon) => hexagon.disable());
-        this.hexagon.adjacents.forEach((hexagon) => hexagon.enable(this));
+        this.selectedHexagon.nonAdjacents.forEach((hexagon) => hexagon.disable());
+        this.selectedHexagon.adjacents.forEach((hexagon) => hexagon.enable(this));
     }
     deselect() {
         this.selected = false;
-        this.hexagon.operation = null;
-        this.hexagon.nonAdjacents.forEach((hexagon) => hexagon.enable());
-        this.hexagon.adjacents.forEach((hexagon) => {
+        const selectedHexagon = this.selectedHexagon;
+        selectedHexagon?.nonAdjacents.forEach((hexagon) => hexagon.enable());
+        selectedHexagon?.adjacents.forEach((hexagon) => {
             hexagon.enable();
         });
     }

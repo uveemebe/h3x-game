@@ -5,12 +5,10 @@ export class Challenge {
 
     constructor(data) {
         this.hexagons = data.hexagons.map(data => new Hexagon(this, data));
+        this.selectedHexagon?.select();
         this.operations = data.operations.map(data => new Operation(this, data));
-        this._selectedHexagon = this.hexagons.find(hexagon => hexagon.selected);
-        this.hexagons.find(hexagon => hexagon.selected)?.select();
-        this.operations.find(operation => operation.selected)?.select();
+        this.selectedOperation?.select();
         this.save = data.save ?? false;
-        this.changed = data.changed ?? false;
     }
 
     get rows() {
@@ -24,19 +22,17 @@ export class Challenge {
     }
 
     get selectedHexagon() {
-        return this._selectedHexagon;
+        return this.hexagons.find(hexagon => hexagon.selected);
     }
-    set selectedHexagon(hexagon) {
-        this._selectedHexagon = hexagon;
-        this.operations.forEach(operation => operation.hexagon = hexagon);
+    get selectedOperation() {
+        return this.operations?.find(operation => operation.selected);
     }
 
     toJSON() {
         return {
             hexagons: this.hexagons,
             operations: this.operations,
-            selectedHexagon: this.selectedHexagon,
-            changed: this.changed
+            selectedHexagon: this.selectedHexagon
         };
     }
     toString() {

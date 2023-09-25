@@ -30,25 +30,22 @@ export class Hexagon extends Statable {
 
     deselect() {
         this.selected = false;
-        this.challenge.operations.filter((operation) => operation.selected).forEach((operation) => operation.deselect());
+        this.challenge.selectedOperation?.deselect();
         this.others.forEach((hexagon) => hexagon.enable());
-        this.challenge.selectedHexagon = null;
-        this.challenge.changed = false;
         this.operation && (this.operation.selected = false);
     }
     select() {
-        if (!this.operation) {
+        const selectedOperation = this.challenge.selectedOperation;
+        if (!selectedOperation) {
             this.others.filter(hexagon => hexagon.selected).forEach((hexagon) => hexagon.deselect());
             this.selected = true;
-            this.challenge.selectedHexagon = this;
-            this.challenge.changed = true;
         } else {
-            this.value = this.operationValue;
-            this.operation.hexagon.lock();
             this.press();
-            this.operation.deselect();
-            this.operation = null;
-            this.challenge.selectedHexagon = null;
+            this.value = this.operationValue;
+            const selectedHexagon = this.challenge.selectedHexagon;
+            selectedHexagon.others.forEach((hexagon) => hexagon.enable());
+            selectedHexagon.lock();
+            selectedOperation.deselect();
             this.challenge.save = true;
         }
     }
@@ -59,7 +56,7 @@ export class Hexagon extends Statable {
     }
     enable(operation = null) {
         this.operation = operation;
-        this.operationValue = operation ? operation.calculate(this.operation.hexagon.value, this.value) : null;
+        this.operationValue = operation ? operation.calculate(this.operation.selectedHexagon.value, this.value) : null;
         this.enabled = this.operationValue === null || (this.operationValue > 0 && this.operationValue < 10000 && Number.isInteger(this.operationValue));
     }
 
