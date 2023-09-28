@@ -3,7 +3,8 @@
 
   export let operation;
   const handleClick = () => {
-    challenge.update(() => operation.click());
+    operation.click();
+    challenge.update(() => $challenge);
   }
 </script>
 

@@ -16,6 +16,9 @@
   --color-text: hsl(0, 0%, 20%);
   --color-text-light: hsl(0, 0%, 20%, 0.4);
   --color-text-lighter: hsl(0, 0%, 20%, 0.1);
+  --background-color: hsl(0, 0%, 100%);
+  --background-color-dark: hsl(0, 0%, 100%, 0.4);
+  --background-color-darker: hsl(0, 0%, 100%, 0.1);
 }
 
 * {
@@ -24,6 +27,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  user-select: none;
 }
 
 body {
@@ -47,7 +51,6 @@ button {
   border: solid 1px var(--color-text-lighter);
   outline: none;
   box-shadow: none;
-  user-select: none;
   -webkit-tap-highlight-color: transparent;
 }
 

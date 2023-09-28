@@ -25,48 +25,50 @@ export class Hexagon extends Statable {
 
     click() {
         this.selected ? this.deselect() : this.select();
-        return this.challenge;
     }
 
     deselect() {
         this.selected = false;
         this.challenge.selectedOperation?.deselect();
         this.others.forEach((hexagon) => hexagon.enable());
-        this.operation && (this.operation.selected = false);
     }
     select() {
+        const previousSelectedHexagon = this.selected ? null : this.challenge.selectedHexagon;
         const selectedOperation = this.challenge.selectedOperation;
         if (!selectedOperation) {
-            this.others.filter(hexagon => hexagon.selected).forEach((hexagon) => hexagon.deselect());
             this.selected = true;
+            previousSelectedHexagon?.deselect();
         } else {
-            this.press();
             this.value = this.operationValue;
-            const selectedHexagon = this.challenge.selectedHexagon;
-            selectedHexagon.others.forEach((hexagon) => hexagon.enable());
-            selectedHexagon.lock();
-            selectedOperation.deselect();
+            this.operationValue = null;
+            this.press();
+            const found = this.found;
+            selectedOperation.selected = false;
+            previousSelectedHexagon.deselect();
+            previousSelectedHexagon.lock(previousSelectedHexagon.initialValue);
             this.challenge.save = true;
+            if (found) {
+                this.found = true;
+                this.challenge.targetFound(this);
+            }
         }
     }
 
     disable() {
         this.enabled = false;
-        this.operation = null;
+        this.operationValue = null;
     }
-    enable(operation = null) {
-        this.operation = operation;
-        this.operationValue = operation ? operation.calculate(this.operation.selectedHexagon.value, this.value) : null;
-        this.enabled = this.operationValue === null || (this.operationValue > 0 && this.operationValue < 10000 && Number.isInteger(this.operationValue));
+    enable(operationValue = null, found = null) {
+        this.operationValue = operationValue;
+        this.enabled = operationValue === null || (this.operationValue > 0 && this.operationValue < 10000 && Number.isInteger(this.operationValue));
+        this.found = found;
     }
 
     unlock() {
         this.locked = false;
     }
-    lock() {
-        this.value = this.initialValue;
-        this.enabled = false;
-        this.selected = false;
+    lock(value) {
+        this.value = value ?? this.value;
         this.locked = true;
     }
 

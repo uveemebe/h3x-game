@@ -2,7 +2,8 @@ export const STATES = {
   ENABLED: "enabled",
   SELECTED: "selected",
   PRESSED: "pressed",
-  LOCKED: "locked"
+  LOCKED: "locked",
+  FOUND: "found"
 };
 
 export class Statable {
@@ -20,8 +21,8 @@ export class Statable {
   get locked() {
     return this.states.has(STATES.LOCKED);
   }
-  get clicked() {
-    return this.states.has(STATES.PRESSED);
+  get found() {
+    return this.states.has(STATES.FOUND);
   }
 
   set selected(value) {
@@ -33,6 +34,10 @@ export class Statable {
   set locked(value) {
     value ? this.states.add(STATES.LOCKED) : this.states.delete(STATES.LOCKED);
   }
+  set found(value) {
+    value ? this.states.add(STATES.FOUND) : this.states.delete(STATES.FOUND);
+  }
+
   press() {
     this.states.add(STATES.PRESSED);
     setTimeout(() => this.states.delete(STATES.PRESSED), 1000);

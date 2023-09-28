@@ -2,8 +2,12 @@
     import { challenge } from "$lib/stores/challenge";
     import Hexagon from "./hexagon.svelte";
 	import Buttons from "./buttons.svelte";
+	import Targets from "./targets.svelte";
 </script>
 
+<section class="targets">
+    <Targets></Targets>
+</section>
 <section class="hexagons">
     {#each $challenge.rows as row}
         <div class="row">
@@ -15,7 +19,6 @@
 </section>
 <section class="buttons"><Buttons operations={$challenge.operations}></Buttons></section>
 <section class="log">
-    <div><button on:click={() => localStorage.clear()}>Clear</button></div>
     <div>
         {#each $challenge.hexagons as hexagon}
             <span>{hexagon.toString()}</span>
@@ -27,7 +30,13 @@
     section {
         display: flex;
         flex-direction: column;
+        justify-content: center;
+        align-items: center;
     }
+    section+section {
+        margin-top: 8px;
+    }
+    /* target */
     /* hexagons */
     .hexagons div {
         display: flex;

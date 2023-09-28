@@ -20,7 +20,7 @@
         localStorageChallenges.update(() => []);
         return new Challenge(challengeData);
       });
-    }, 1000);
+    }, 750);
   }
   const endResetClick = () => {
     clearTimeout(timeout);

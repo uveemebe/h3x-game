@@ -66,5 +66,10 @@
         {"name": "subtract"},
         {"name": "multiply"},
         {"name": "divide"}
+    ],
+    "targets": [
+        {"value": 151},
+        {"value": 237},
+        {"value": 402}
     ]
 }

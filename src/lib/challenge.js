@@ -1,5 +1,6 @@
 import { Hexagon } from "$lib/hexagon.js";
 import { Operation } from "$lib/operation.js";
+import { Target } from "./target";
 
 export class Challenge {
 
@@ -8,6 +9,7 @@ export class Challenge {
         this.selectedHexagon?.select();
         this.operations = data.operations.map(data => new Operation(this, data));
         this.selectedOperation?.select();
+        this.targets = data.targets.map(data => new Target(this, data));
         this.save = data.save ?? false;
     }
 
@@ -28,11 +30,24 @@ export class Challenge {
         return this.operations?.find(operation => operation.selected);
     }
 
+    targetIsFound(value) {
+        return this.targets.filter(target => !target.found).find(target => target.isFound(value));
+    }
+    targetFound(hexagon) {
+        this.targets.filter(target => !target.found).find(target => target.isFound(hexagon.value)).found = true;
+        hexagon.disable();
+        hexagon.lock();
+        this.hexagons.filter(hexagon => !hexagon.found).forEach(hexagon => {
+            hexagon.unlock();
+            hexagon.enable();
+        });
+    }
+
     toJSON() {
         return {
             hexagons: this.hexagons,
             operations: this.operations,
-            selectedHexagon: this.selectedHexagon
+            targets: this.targets
         };
     }
     toString() {
