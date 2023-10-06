@@ -14,7 +14,7 @@ export class Hexagon extends Statable {
     }
 
     get adjacents() {
-        return this.adjacentIndexes.map((index) => this.challenge.hexagons[index]).filter(hexagon => !hexagon.locked);
+        return this.challenge.hexagons.filter((hexagon) => !hexagon.locked && this.adjacentIndexes.includes(hexagon.index));
     }
     get nonAdjacents() {
         return this.challenge.hexagons.filter((hexagon) => !hexagon.locked && ![this.index, ...this.adjacentIndexes].includes(hexagon.index));
@@ -30,7 +30,7 @@ export class Hexagon extends Statable {
     deselect() {
         this.selected = false;
         this.challenge.selectedOperation?.deselect();
-        this.others.forEach((hexagon) => hexagon.enable());
+        this.others.enable();
     }
     select() {
         const previousSelectedHexagon = this.selected ? null : this.challenge.selectedHexagon;
@@ -42,15 +42,11 @@ export class Hexagon extends Statable {
             this.value = this.operationValue;
             this.operationValue = null;
             this.press();
-            const found = this.found;
             selectedOperation.selected = false;
             previousSelectedHexagon.deselect();
-            previousSelectedHexagon.lock(previousSelectedHexagon.initialValue);
+            previousSelectedHexagon.lock(false, previousSelectedHexagon.initialValue);
+            this.challenge.check(this);
             this.challenge.save = true;
-            if (found) {
-                this.found = true;
-                this.challenge.targetFound(this);
-            }
         }
     }
 
@@ -67,9 +63,9 @@ export class Hexagon extends Statable {
     unlock() {
         this.locked = false;
     }
-    lock(value) {
+    lock(found = false, value = null) {
         this.value = value ?? this.value;
-        this.locked = true;
+        super.lock(found);
     }
 
     toJSON() {
@@ -86,6 +82,25 @@ export class Hexagon extends Statable {
 
     toString() {
         return `${this.index} (${this.value}): ${this.state}`;
+    }
+
+}
+
+export class Hexagons extends Array {
+
+    constructor(...hexagons) {
+        super(...hexagons);
+    }
+
+    enable() {
+        this.forEach(hexagon => hexagon.enable());
+    }
+    disable() {
+        this.forEach(hexagon => hexagon.disable());
+    }
+
+    unlock() {
+        this.forEach(hexagon => hexagon.unlock());
     }
 
 }

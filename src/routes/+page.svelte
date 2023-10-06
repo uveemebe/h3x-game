@@ -18,13 +18,6 @@
     {/each}
 </section>
 <section class="buttons"><Buttons operations={$challenge.operations}></Buttons></section>
-<section class="log">
-    <div>
-        {#each $challenge.hexagons as hexagon}
-            <span>{hexagon.toString()}</span>
-        {/each}
-    </div>
-</section>
 
 <style>
     section {
@@ -36,7 +29,10 @@
     section+section {
         margin-top: 8px;
     }
-    /* target */
+    /* targets */
+    section.targets {
+        margin-bottom: 8px;
+    }
     /* hexagons */
     .hexagons div {
         display: flex;
@@ -50,14 +46,5 @@
     /* buttons */
     section.buttons {
         min-height: 48px;
-    }
-    /* log */
-    section.log div {
-        display: flex;
-        flex-direction: column;
-        color: var(--color-text-light);
-    }
-    section.log div span {
-        font-size: var(--font-size-small);
     }
 </style>

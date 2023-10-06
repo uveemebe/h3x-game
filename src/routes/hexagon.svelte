@@ -21,7 +21,7 @@
 	>
 		<path
 			stroke="none"
-			fill="var(--color-principal)"
+			fill="var(--color-primary)"
 			d="M36.5 1.0207259421637a7 7 0 0 1 7 0l28.507041555162 16.458548115673a7 7 0 0 1 3.5 6.0621778264911l0 32.917096231345a7 7 0 0 1 -3.5 6.0621778264911l-28.507041555162 16.458548115673a7 7 0 0 1 -7 0l-28.507041555162 -16.458548115673a7 7 0 0 1 -3.5 -6.0621778264911l0 -32.917096231345a7 7 0 0 1 3.5 -6.0621778264911"
 		/>
 		{#if hexagon.operationValue === null}
@@ -31,7 +31,7 @@
 				y="50%"
 				text-anchor="middle"
 				font-family="Quicksand"
-				font-weight="500"
+				font-weight="800"
 				fill="#222"
 				dx="2px"
 				dy="7px">{hexagon.value}</text
@@ -44,8 +44,8 @@
 				y="50%"
 				text-anchor="middle"
 				font-family="Quicksand"
-				font-weight="500"
-				fill="#222"
+				font-weight="800"
+				fill="var(--color-text-1)"
 				dx="2px"
 				dy="7px">{hexagon.value}</text
 			>
@@ -57,8 +57,7 @@
 				y="72.5%"
 				text-anchor="middle"
 				font-family="Quicksand"
-				font-weight="400"
-				fill="#222"
+				fill="var(--color-text-1)"
 				dx="2px"
 				dy="7px">{hexagon.operationValue}</text
 			>
@@ -81,14 +80,14 @@
 	}
 	path {
 		transition: fill 200ms;
-		fill: var(--color-principal-light);
+		fill: var(--color-primary-light);
 	}
 	.enabled {
 		cursor: pointer;
 		pointer-events: all;
 	}
 	.enabled path {
-		fill: var(--color-principal);
+		fill: var(--color-primary);
 	}
 	.selected path {
 		fill: var(--color-secondary-light);
@@ -109,12 +108,12 @@
 		fill: var(--color-text);
 	}
 	.locked path {
-		fill: var(--color-text-lighter);
+		fill: var(--color-text-1);
 	}
 
 	text {
 		pointer-events: none;
-		fill: var(--color-text-lighter);
+		fill: var(--color-text-1);
 	}
 	.enabled text {
 		fill: var(--color-text);
@@ -123,17 +122,17 @@
 		fill: hsl(0, 0%, 100%);
 	}
 	.locked text {
-		fill: var(--color-text-lighter);
+		fill: var(--color-text-1);
 	}
 	.found.locked text {
-		fill: var(--color-secondary-light);
+		fill: var(--color-secondary-lighter);
 	}
 	text.operationValue {
-		font-size: var(--font-size-smaller);
+		font-size: var(--font-size-3);
 		fill: hsl(0, 0%, 20%, 0.15);
 	}
 	.enabled text.operationValue {
-		fill: var(--color-text-light);
+		fill: var(--color-text-4);
 	}
 	.found text.operationValue {
 		fill: var(--background-color-dark);

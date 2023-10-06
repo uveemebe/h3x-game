@@ -36,16 +36,16 @@ export class Operation extends Statable {
         const previousSelectedOperation = this.selected ? null : this.challenge.selectedOperation;
         previousSelectedOperation?.deselect();
         this.selected = true;
-        this.selectedHexagon.nonAdjacents.forEach((hexagon) => hexagon.disable());
+        this.selectedHexagon.nonAdjacents.disable();
         this.selectedHexagon.adjacents.forEach((hexagon) => {
             const operationValue = this.calculate(this.selectedHexagon.value, hexagon.value);
-            const found = this.challenge.targetIsFound(operationValue);
+            const found = this.challenge.targets.isFound(operationValue);
             hexagon.enable(operationValue, found);
         });
     }
     deselect() {
         this.selected = false;
-        this.selectedHexagon?.others.forEach((hexagon) => hexagon.enable());
+        this.selectedHexagon?.others.enable();
     }
 
     toJSON() {

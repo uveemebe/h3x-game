@@ -1,6 +1,6 @@
 import { writable } from 'svelte/store';
 import challengeData from "$lib/data/challenge.json";
-import { Challenge } from '$lib/challenge.js';
+import { LockChallenge } from '$lib/challenge.js';
 
 export const localStorageChallenges = writable(JSON.parse(localStorage.challenges ?? '[]'));
 localStorageChallenges.subscribe((localStorageChallenges) => {
@@ -16,5 +16,5 @@ export const getPreviousChallenge = (challenge, challenges) => {
     localStorageChallenges.update(() => challenges);
     localStorageChallenge = challenges[challenges.length - 1] ?? challengeData;
   }
-  return new Challenge(localStorageChallenge ?? challengeData);
+  return new LockChallenge(localStorageChallenge ?? challengeData);
 };

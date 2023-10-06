@@ -2,24 +2,42 @@
 	import { challenge } from '$lib/stores/challenge.js';
 </script>
 
-<div>
+<article>
 	{#each $challenge.targets as target}
-		<span class={target.state}>{target.value}</span>
+		<div class={target.state} style="--order: {target.sortedIndex}">
+			{#if !target.found}
+				<span>{target.value}</span>
+			{:else}
+				<i class="material-symbols-rounded">star</i>
+			{/if}
+		</div>
 	{/each}
-</div>
+</article>
 
 <style>
+	article {
+		display: flex;
+		flex-direction: row-reverse;
+		column-gap: 12px;
+		justify-content: right;
+		color: var(--color-text-1);
+		width: 2em;
+	}
 	div {
+		position: relative;
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		column-gap: 16px;
+		order: var(--order);
 	}
-	span {
-		font-size: var(--font-size-larger);
-		font-weight: 500;
+	.enabled {
+		color: var(--color-text);
+		font-size: var(--font-size-7);
 	}
 	.found {
-		color: var(--color-secondary-light);
+		color: var(--color-secondary-lighter);
+	}
+	span {
+		position: relative;
 	}
 </style>

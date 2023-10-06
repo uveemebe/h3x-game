@@ -38,6 +38,29 @@ export class Statable {
     value ? this.states.add(STATES.FOUND) : this.states.delete(STATES.FOUND);
   }
 
+  enable() {
+    this.enabled = true;
+  }
+  disable() {
+    this.enabled = false;
+  }
+
+  lock(found = false) {
+    this.locked = true;
+    this.found = found;
+    this.enabled = false;
+  }
+  unlock() {
+    this.locked = false;
+  }
+
+  select() {
+    this.selected = true;
+  }
+  deselect() {
+    this.selected = false;
+  }
+
   press() {
     this.states.add(STATES.PRESSED);
     setTimeout(() => this.states.delete(STATES.PRESSED), 1000);

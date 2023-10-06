@@ -68,8 +68,8 @@
         {"name": "divide"}
     ],
     "targets": [
-        {"index":0, "value": 153, "states": ["enabled"]},
-        {"index":1, "value": 237, "states": []},
-        {"index":2, "value": 402, "states": []}
+        {"value": 151, "time": 30, "states": ["enabled"]},
+        {"value": 237, "time": 30, "states": []},
+        {"value": 402, "time": 30, "states": []}
     ]
 }

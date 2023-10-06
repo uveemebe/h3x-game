@@ -2,7 +2,7 @@
 	import challengeData from "$lib/data/challenge.json";
 	import { challenge } from "$lib/stores/challenge";
 	import { localStorageChallenges, getPreviousChallenge } from "$lib/stores/localStorageChallenges";
-  import { Challenge } from "$lib/challenge.js";
+  import { LockChallenge } from "$lib/challenge.js";
 	import Operation from "./operation.svelte";
 
   export let operations;
@@ -18,7 +18,7 @@
     timeout = setTimeout(() => {
       challenge.update(() => {
         localStorageChallenges.update(() => []);
-        return new Challenge(challengeData);
+        return new LockChallenge(challengeData);
       });
     }, 750);
   }
@@ -31,7 +31,9 @@
   {#each operations as operation}
     <Operation operation={operation}></Operation>
   {/each}
-  <button disabled={$localStorageChallenges.length === 0 && !$challenge.selectedHexagon} on:click={resetClick} on:mousedown={startResetClick} on:touchstart={startResetClick} on:mouseup={endResetClick} on:touchend={endResetClick}><i class="material-icons">replay</i></button>
+  <button class={$localStorageChallenges.length > 0 || $challenge.selectedHexagon ? "enabled" : ""} on:click={resetClick} on:mousedown={startResetClick} on:touchstart={startResetClick} on:mouseup={endResetClick} on:touchend={endResetClick}>
+    <i class="material-symbols-rounded">replay</i>
+  </button>
 </div>
 
 <style>
@@ -43,8 +45,5 @@
   }
   button {
     margin-left: 16px;
-  }
-  button i {
-    font-weight: bold;
   }
 </style>

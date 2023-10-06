@@ -1,29 +1,51 @@
 @font-face {
-  font-family: 'OpenSans';
+  font-family: 'Quicksand';
   src: local('Quicksand'), local('quicksand'), url('/fonts/Quicksand.ttf') format('truetype')
+}
+@font-face {
+  font-family: 'RobotoMono';
+  src: local('RobotoMono'), local('robotomono'), url('/fonts/RobotoMono.ttf') format('truetype')
 }
 
 :root {
-  --font-family: Quicksand;
-  --font-size-small: 20px;
-  --font-size-smaller: 16px;
-  --font-size-large: 28px;
-  --font-size-larger: 32px;
-  --color-principal: hsl(121, 50%, 60%);
+  --font-family: 'Quicksand';
+  --font-size-3: 16px;
+  --font-size-4: 20px;
+  --font-size-5: 24px;
+  --font-size-6: 28px;
+  --font-size-7: 32px;
+  --color-primary: hsl(121, 50%, 60%);
   --color-secondary: hsl(301, 50%, 60%);
-  --color-principal-light: hsl(121, 50%, 60%, 0.4);
+  --color-primary-light: hsl(121, 50%, 60%, 0.4);
   --color-secondary-light: hsl(301, 50%, 60%, 0.4);
+  --color-primary-lighter: hsl(121, 50%, 60%, 0.2);
+  --color-secondary-lighter: hsl(301, 50%, 60%, 0.2);
+  --color-light: hsl(0, 0%, 95%);
   --color-text: hsl(0, 0%, 20%);
-  --color-text-light: hsl(0, 0%, 20%, 0.4);
-  --color-text-lighter: hsl(0, 0%, 20%, 0.1);
+  --color-text-4: hsl(0, 0%, 20%, 0.4);
+  --color-text-3: hsl(0, 0%, 20%, 0.3);
+  --color-text-2: hsl(0, 0%, 20%, 0.2);
+  --color-text-1: hsl(0, 0%, 20%, 0.1);
   --background-color: hsl(0, 0%, 100%);
   --background-color-dark: hsl(0, 0%, 100%, 0.4);
   --background-color-darker: hsl(0, 0%, 100%, 0.1);
 }
+.material-symbols-rounded {
+  font-variation-settings:
+  'FILL' 1,
+  'wght' 600,
+  'GRAD' 0,
+  'opsz' 24
+}
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 24
+}
 
 * {
-  font-family: var(--font-family);
-  font-size: 24px;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -33,6 +55,9 @@
 body {
   display: flex;
   justify-content: center;
+  font-family: var(--font-family);
+  font-size: 24px;
+  font-weight: 600;
 }
 
 article {
@@ -48,13 +73,24 @@ button {
   border-radius: 50%;
   background-color: transparent;
   cursor: pointer;
-  border: solid 1px var(--color-text-lighter);
+  border: solid 1px var(--color-text-1);
   outline: none;
   box-shadow: none;
   -webkit-tap-highlight-color: transparent;
+  pointer-events: none;
+  transition: background-color 200ms;
+  color: var(--color-text-4);
 }
-
+button.enabled {
+  pointer-events: all;
+  color: var(--color-text);
+}
+button.selected {
+  background-color: var(--color-secondary);
+}
 button:active i {
-  color: var(--color-text-light);
-  font-size: 95%;
+  color: var(--color-text-4);
+}
+button span {
+  font-weight: 600;
 }
