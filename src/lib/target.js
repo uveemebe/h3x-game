@@ -8,30 +8,46 @@ export class Target extends Statable {
 		this.index = data.index;
 		this.sortedIndex = data.sortedIndex ?? data.index;
 		this.value = data.value;
-		this.time = data.time;
-		this.initialTime = data.initialTime ?? data.time;
+		this.time = data.time ?? 0;
+		this.operations = data.operations ?? 0;
+		//this.startTimer();
 	}
 
-	start() {
-		if (this.initialTime && this.enabled) {
-			this.countdown = setInterval(() => {
-				if (this.time <= 0) {
-					clearInterval(this.countdown);
-					this.countdown = null;
-				}
-				this.time--;
-				challengeStore.update(() => this.challenge);
+	startTimer() {
+		if (this.enabled) {
+			this.timer = setInterval(() => {
+				this.time++;
+				this.challenge.save = false;
+				challengeStore.set(this.challenge);
 			}, 1000);
 		}
 	}
 
-    lock(found = false) {
-        super.lock(found);
-        this.sortedIndex = found ? this.index + this.challenge.targets.length : this.index;
-    }
+	lock(found = false) {
+			super.lock(found);
+			this.sortedIndex = found ? this.index + this.challenge.targets.length : this.index;
+	}
 
 	isFound(value) {
 		return this.enabled && !this.found && this.value === value;
+	}
+
+	check(selectedHexagon) {
+		this.operations++;
+		const found = this.isFound(selectedHexagon.value);
+		if (found) {
+			this.lock(true);
+			this.challenge.targets.find(target => !target.enabled && !target.locked)?.enable();
+			selectedHexagon.lock(this);
+			const notFoundHexagons = this.challenge.hexagons.filter(hexagon => !hexagon.found);
+			if (this.challenge.targets.found) {
+				notFoundHexagons.lock();
+			} else {
+				notFoundHexagons.previousIndexes = [];
+				notFoundHexagons.unlock();
+				notFoundHexagons.enable();
+			}
+		}
 	}
 
 	toJSON() {
@@ -41,7 +57,8 @@ export class Target extends Statable {
 			value: this.value,
 			time: this.time,
 			initialTime: this.initialTime,
-			states: Array.from(this.states)
+			states: Array.from(this.states),
+			operations: this.operations
 		};
 	}
 }
@@ -49,10 +66,6 @@ export class Target extends Statable {
 export class Targets extends Array {
 	constructor(...targets) {
 		super(...targets);
-	}
-
-	start() {
-		this.filter((target) => target.enabled).forEach((target) => target.start());
 	}
 
 	isFound(value) {

@@ -3,7 +3,7 @@
   src: local('Quicksand'), local('quicksand'), url('/fonts/Quicksand.ttf') format('truetype')
 }
 @font-face {
-  font-family: 'RobotoMono';
+  font-family: 'Roboto Mono';
   src: local('RobotoMono'), local('robotomono'), url('/fonts/RobotoMono.ttf') format('truetype')
 }
 
@@ -14,21 +14,43 @@
   --font-size-5: 24px;
   --font-size-6: 28px;
   --font-size-7: 32px;
-  --color-primary: hsl(121, 50%, 60%);
-  --color-secondary: hsl(301, 50%, 60%);
-  --color-primary-light: hsl(121, 50%, 60%, 0.4);
-  --color-secondary-light: hsl(301, 50%, 60%, 0.4);
-  --color-primary-lighter: hsl(121, 50%, 60%, 0.2);
-  --color-secondary-lighter: hsl(301, 50%, 60%, 0.2);
+
+  --color-text-dark: #292524;
+  --color-text-light: #ffffff;
+  --color-text-light-transparent: hsla(60, 9%, 98%, 0.6);
+  --color-text-shadow: hsl(12, 6%, 15%, 0.3);
+
+  --color-primary: #22c55e;
+  --color-primary-transparent: hsl(142, 71%, 45%, 0.3);
+
+  --color-secondary: #e879f9;
+  --color-secondary-transparent: hsl(292, 91%, 73%, 0.3);
+
+  --color-dark: #292524;
+  --color-dark-transparent: hsl(12, 6%, 15%, 0.2);
+  --color-disabled: #f5f5f4;
+
+
+  --color-primary-6: #16a34a;
+  --color-primary-5: #22c55e;/* hsl(121, 50%, 60%);*/
+  --color-primary-4: #86efac; /* hsl(121, 50%, 60%, 0.4);*/
+  --color-primary-3: #bbf7d0; /* hsl(121, 50%, 60%, 0.2);*/
+  --color-primary-2: #d1fae5;
+  --color-secondary-7: #a21caf;
+  --color-secondary-5: #e879f9; /* hsl(301, 50%, 60%); */
+  --color-secondary-4: #f0abfc;
+  --color-secondary-3: #f0abfc; /* hsl(301, 50%, 60%, 0.4);*/
+  --color-secondary-2: #f5d0fe; /* hsl(301, 50%, 60%, 0.2);*/
   --color-light: hsl(0, 0%, 95%);
-  --color-text: hsl(0, 0%, 20%);
-  --color-text-4: hsl(0, 0%, 20%, 0.4);
-  --color-text-3: hsl(0, 0%, 20%, 0.3);
-  --color-text-2: hsl(0, 0%, 20%, 0.2);
-  --color-text-1: hsl(0, 0%, 20%, 0.1);
-  --background-color: hsl(0, 0%, 100%);
-  --background-color-dark: hsl(0, 0%, 100%, 0.4);
-  --background-color-darker: hsl(0, 0%, 100%, 0.1);
+  --color-light-4: hsl(0, 0%, 95%, 0.4);
+  --color-light-6: hsl(0, 0%, 95%, 0.6);
+  --color-dark-1: #f5f5f4;
+  --color-dark-2: #e7e5e4;
+  --color-dark-3: #d6d3d1;
+  --color-dark-4: #a8a29e;
+  --color-dark-6: #57534e;
+  --color-dark-8: #44403c;
+  --color-dark-8-opacity-4: hsl(12, 6%, 15%, 0.4);
 }
 .material-symbols-rounded {
   font-variation-settings:
@@ -73,23 +95,23 @@ button {
   border-radius: 50%;
   background-color: transparent;
   cursor: pointer;
-  border: solid 1px var(--color-text-1);
+  border: solid 1px var(--color-dark-1);
   outline: none;
   box-shadow: none;
   -webkit-tap-highlight-color: transparent;
   pointer-events: none;
   transition: background-color 200ms;
-  color: var(--color-text-4);
+  color: var(--color-dark-3);
 }
 button.enabled {
   pointer-events: all;
-  color: var(--color-text);
+  color: var(--color-dark-8);
 }
 button.selected {
-  background-color: var(--color-secondary);
+  background-color: var(--color-secondary-5);
 }
 button:active i {
-  color: var(--color-text-4);
+  color: var(--color-dark-3);
 }
 button span {
   font-weight: 600;

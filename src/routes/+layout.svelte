@@ -3,17 +3,24 @@
 	import Header from './header.svelte';
 </script>
 
-<main>
+
+<div>
 	<Header />
-	<slot />
+	<main>
+		<slot />
+	</main>
 	<Footer />
-</main>
+</div>
 
 <style>
+	div {
+		display: flex;
+		flex-direction: column;
+		margin: 8px;
+		width: calc(100vw - 16px);
+	}
 	main {
 		display: flex;
 		flex-direction: column;
-		margin-top: 8px;
-		min-width: 320px;
 	}
 </style>

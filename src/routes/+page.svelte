@@ -1,8 +1,9 @@
 <script>
     import { challenge } from "$lib/stores/challenge";
-    import Hexagon from "./hexagon.svelte";
-	import Buttons from "./buttons.svelte";
 	import Targets from "./targets.svelte";
+    import Hexagon from "./hexagon.svelte";
+	import Operation from "./operation.svelte";
+	import Undo from "./undo.svelte";
 </script>
 
 <section class="targets">
@@ -17,7 +18,12 @@
         </div>
     {/each}
 </section>
-<section class="buttons"><Buttons operations={$challenge.operations}></Buttons></section>
+<section class="buttons">
+    {#each $challenge.operations as operation}
+        <Operation operation={operation}></Operation>
+    {/each}
+    <Undo></Undo>
+</section>
 
 <style>
     section {
@@ -31,6 +37,7 @@
     }
     /* targets */
     section.targets {
+        height: 40px;
         margin-bottom: 8px;
     }
     /* hexagons */
@@ -40,11 +47,17 @@
         column-gap: 4px;
         justify-content: center;
     }
+    section.buttons {
+        display: flex;
+        flex-direction: row;
+        column-gap: 12px;
+        min-height: 80px;
+    }
     .row+.row {
         margin-top: -20px;
     }
     /* buttons */
     section.buttons {
-        min-height: 48px;
+        min-height: 80px;
     }
 </style>

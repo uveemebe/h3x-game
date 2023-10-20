@@ -24,6 +24,9 @@ export class Statable {
   get found() {
     return this.states.has(STATES.FOUND);
   }
+  get pressed() {
+    return this.states.has(STATES.PRESSED);
+  }
 
   set selected(value) {
     value ? this.states.add(STATES.SELECTED) : this.states.delete(STATES.SELECTED);
@@ -59,11 +62,6 @@ export class Statable {
   }
   deselect() {
     this.selected = false;
-  }
-
-  press() {
-    this.states.add(STATES.PRESSED);
-    setTimeout(() => this.states.delete(STATES.PRESSED), 1000);
   }
 
   get state() {

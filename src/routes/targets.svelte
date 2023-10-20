@@ -3,12 +3,14 @@
 </script>
 
 <article>
-	{#each $challenge.targets as target}
+	{#each $challenge.targets.filter(target => !target.found) as target}
 		<div class={target.state} style="--order: {target.sortedIndex}">
-			{#if !target.found}
-				<span>{target.value}</span>
-			{:else}
-				<i class="material-symbols-rounded">star</i>
+			<span class="value">{target.value}</span>
+			{#if target.enabled}
+			<div>
+				<span class="operations">{target.operations}</span>
+				<!--<span class="time">{target.time}"</span>-->
+			</div>
 			{/if}
 		</div>
 	{/each}
@@ -17,27 +19,35 @@
 <style>
 	article {
 		display: flex;
-		flex-direction: row-reverse;
+		flex-direction: row;
 		column-gap: 12px;
-		justify-content: right;
-		color: var(--color-text-1);
-		width: 2em;
+		justify-content: left;
+		color: var(--color-dark-1);
+		width: 52px;
 	}
 	div {
 		position: relative;
 		display: flex;
+		width: 100%;
 		justify-content: center;
 		align-items: center;
 		order: var(--order);
 	}
 	.enabled {
-		color: var(--color-text);
+		color: var(--color-dark-8);
 		font-size: var(--font-size-7);
 	}
 	.found {
-		color: var(--color-secondary-lighter);
+		color: var(--color-secondary-2);
 	}
-	span {
-		position: relative;
+	div>div {
+		position: absolute;
+		bottom: 100%;
+		font-size: var(--font-size-4);
+		color: var(--color-dark-4);
+	}
+	div>div span {
+		font-weight: 400;
+		text-align: right;
 	}
 </style>

@@ -1,4 +1,5 @@
 import { STATES, Statable } from "$lib/statable.js";
+import { challenge as challengeStore } from '$lib/stores/challenge.js';
 
 export class Hexagon extends Statable {
 
@@ -11,6 +12,8 @@ export class Hexagon extends Statable {
         this.initialValue = data.initialValue ?? data.value;
         this.operationValue = data.operationValue ?? null;
         this.adjacentIndexes = data.adjacentIndexes;
+        this.previousIndexes = data.previousIndexes ?? [];
+        this.target = data.target ?? null;
     }
 
     get adjacents() {
@@ -25,6 +28,15 @@ export class Hexagon extends Statable {
 
     click() {
         this.selected ? this.deselect() : this.select();
+		challengeStore.update(() => this.challenge);
+    }
+
+    press() {
+        this.states.add(STATES.PRESSED);
+        setTimeout(() => {
+            this.states.delete(STATES.PRESSED);
+            challengeStore.set(this.challenge);
+        }, 1000);
     }
 
     deselect() {
@@ -41,11 +53,12 @@ export class Hexagon extends Statable {
         } else {
             this.value = this.operationValue;
             this.operationValue = null;
+            this.previousIndexes = [...this.previousIndexes, ...previousSelectedHexagon.previousIndexes, previousSelectedHexagon.index];
             this.press();
             selectedOperation.selected = false;
             previousSelectedHexagon.deselect();
             previousSelectedHexagon.lock(false, previousSelectedHexagon.initialValue);
-            this.challenge.check(this);
+            this.challenge.enabledTarget.check(this);
             this.challenge.save = true;
         }
     }
@@ -63,9 +76,10 @@ export class Hexagon extends Statable {
     unlock() {
         this.locked = false;
     }
-    lock(found = false, value = null) {
+    lock(targetFound = null, value = null) {
         this.value = value ?? this.value;
-        super.lock(found);
+        this.target = targetFound;
+        super.lock(targetFound);
     }
 
     toJSON() {
@@ -76,7 +90,9 @@ export class Hexagon extends Statable {
             value: this.value,
             initialValue: this.initialValue,
             operationValue: this.operationValue,
-            adjacentIndexes: this.adjacentIndexes
+            adjacentIndexes: this.adjacentIndexes,
+            previousIndexes: this.previousIndexes,
+            target: this.target
         };
     }
 
@@ -99,6 +115,9 @@ export class Hexagons extends Array {
         this.forEach(hexagon => hexagon.disable());
     }
 
+    lock() {
+        this.forEach(hexagon => hexagon.lock());
+    }
     unlock() {
         this.forEach(hexagon => hexagon.unlock());
     }

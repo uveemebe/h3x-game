@@ -2,13 +2,9 @@
   import { challenge } from "$lib/stores/challenge.js";
 
   export let operation;
-  const handleClick = () => {
-    operation.click();
-    challenge.update(() => $challenge);
-  }
 </script>
 
-<button class={operation.state} on:click={handleClick}>
+<button class={operation.state} on:click={operation.click()}>
   <span>{operation.operator}</span>
 </button>
 

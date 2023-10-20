@@ -1,4 +1,5 @@
 import { Statable } from "$lib/statable.js";
+import { challenge as challengeStore } from '$lib/stores/challenge.js';
 
 export const OPERATION = {
     add: {calculate: (a, b) => a + b, operator: "+"},
@@ -30,6 +31,7 @@ export class Operation extends Statable {
 
     click() {
         this.selected ? this.deselect() : this.select();
+		challengeStore.update(() => this.challenge);
     }
 
     select() {
