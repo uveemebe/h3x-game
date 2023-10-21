@@ -1,9 +1,12 @@
+import { browser } from "$app/environment";
 import { writable } from 'svelte/store';
 import { Challenge } from '$lib/challenge.js';
 
-export const localStorageChallenges = writable(JSON.parse(localStorage.challenges ?? '[]'));
+export const localStorageChallenges = writable(JSON.parse((browser ? localStorage.challenges : null) ?? '[]'));
 localStorageChallenges.subscribe((localStorageChallenges) => {
-	localStorage.challenges = JSON.stringify(localStorageChallenges);
+  if (browser) {
+    localStorage.challenges = JSON.stringify(localStorageChallenges);
+  }
 });
 
 export const getPreviousChallenge = (challenge, challenges) => {

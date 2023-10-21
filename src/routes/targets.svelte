@@ -1,10 +1,11 @@
 <script>
+	import { fade } from 'svelte/transition';
 	import { challenge } from '$lib/stores/challenge.js';
 </script>
 
 <article>
 	{#each $challenge.targets.filter(target => !target.found) as target}
-		<div class={target.state} style="--order: {target.sortedIndex}">
+		<div out:fade class={target.state} style="--order: {target.sortedIndex}">
 			<span class="value">{target.value}</span>
 			{#if target.enabled}
 			<div>

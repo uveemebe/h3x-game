@@ -3,6 +3,7 @@ import { Operation } from "$lib/operation.js";
 import { Target, Targets } from "$lib/target.js";
 
 import challengeDataMock from "$lib/data/challenge.json";
+challengeDataMock.date = new Date();
 
 const STATES = {
     STARTED: "started",

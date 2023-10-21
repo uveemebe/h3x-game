@@ -6,7 +6,8 @@
     <span>H</span><span class="number">3</span><span>X</span>
   </div>
   <div class="menu">
-    <button class="enabled"><i class="material-symbols-rounded">menu</i></button>
+    <button class="enabled"><i class="material-symbols-rounded">bar_chart</i></button>
+    <button class="enabled"><i class="material-symbols-rounded">settings</i></button>
   </div>
 </header>
 
@@ -31,7 +32,7 @@
     font-size: var(--font-size-7);
   }
   span.number {
-    color: hsl(301, 50%, 60%);
+    color: var(--color-secondary);
   }
   div.menu {
     column-gap: 8px;
