@@ -1,17 +1,20 @@
 import { writable } from 'svelte/store';
+import { browser } from '$app/environment';
+
 import { Challenge } from "$lib/challenge.js";
-import { localStorageChallenges } from "$lib/stores/localStorageChallenges.js";
+
+const sameDay = (date1, date2) => {
+    return date1.getFullYear() === date2.getFullYear() && date1.getMonth() === date2.getMonth() && date1.getDate() === date2.getDate();
+}
 
 const getChallengeData = () => {
-    return JSON.parse(localStorage.challenge ?? null) ?? undefined;
+    const data = JSON.parse(browser ? localStorage.challenge ?? null : null);
+    return sameDay(new Date(data?.date), new Date()) ? data : undefined;
 }
 
 export const challenge = writable(new Challenge(getChallengeData()));
 challenge.subscribe((challenge) => {
-    if (challenge.save) {
-        challenge.save = false;
-        const challenges = JSON.parse(localStorage.challenges ?? "[]");
-        localStorageChallenges.set(JSON.parse(JSON.stringify([...challenges, challenge])));
+    if (browser) {
+        localStorage.challenge = JSON.stringify(challenge);
     }
-    localStorage.challenge = JSON.stringify(challenge);
 });

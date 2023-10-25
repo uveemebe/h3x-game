@@ -1,5 +1,4 @@
 import { STATES, Statable } from '$lib/statable.js';
-import { challenge as challengeStore } from '$lib/stores/challenge.js';
 
 export class Target extends Statable {
 	constructor(challenge, data) {
@@ -17,8 +16,6 @@ export class Target extends Statable {
 		if (this.enabled) {
 			this.timer = setInterval(() => {
 				this.time++;
-				this.challenge.save = false;
-				challengeStore.set(this.challenge);
 			}, 1000);
 		}
 	}

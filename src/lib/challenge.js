@@ -3,7 +3,7 @@ import { Operation } from "$lib/operation.js";
 import { Target, Targets } from "$lib/target.js";
 
 import challengeDataMock from "$lib/data/challenge.json";
-challengeDataMock.date = new Date();
+import { challenge as challengeStore } from '$lib/stores/challenge.js';
 
 const STATES = {
     STARTED: "started",
@@ -13,12 +13,17 @@ const STATES = {
 export class Challenge {
 
     constructor(data = challengeDataMock) {
+        this.load(data);
+    }
+    load(data) {
         this.targets = new Targets(...data.targets.map(data => new Target(this, data)));
         this.hexagons = new Hexagons(...data.hexagons.map(data => new Hexagon(this, data)));
         this.selectedHexagon?.select();
         this.operations = data.operations.map(data => new Operation(this, data));
         this.selectedOperation?.select();
-        this.save = data.save ?? false;
+        this.previous = data.previous ?? JSON.stringify(this.toJSONWithoutHistory());
+        this.history = data.history ?? [];
+        this.date = data.date ? new Date(data.date) : new Date();
     }
 
     get rows() {
@@ -45,11 +50,42 @@ export class Challenge {
         return this.targets.found ? STATES.FINISHED : STATES.STARTED;
     }
 
+    save() {
+        const previous = this.previous;
+        this.history.push(previous);
+        this.previous = JSON.stringify(this.toJSONWithoutHistory());
+        challengeStore.set(this);
+    }
+    undo(all) {
+        if (all) {
+            this.load(challengeDataMock);
+            this.history = [];
+        } else if (this.selectedHexagon) {
+            this.selectedHexagon.deselect();
+        } else {
+            const previousChallenge = JSON.parse(this.history.pop());
+            previousChallenge.history = this.history;
+            this.load(previousChallenge);
+        }
+        challengeStore.set(this);
+    }
+
     toJSON() {
         return {
             hexagons: this.hexagons,
             operations: this.operations,
-            targets: this.targets
+            targets: this.targets,
+            previous: this.previous,
+            history: this.history,
+            date: this.date
+        };
+    }
+    toJSONWithoutHistory() {
+        return {
+            hexagons: this.hexagons,
+            operations: this.operations,
+            targets: this.targets,
+            date: this.date
         };
     }
     toString() {

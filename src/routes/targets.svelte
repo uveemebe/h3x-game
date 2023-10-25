@@ -23,7 +23,7 @@
 		flex-direction: row;
 		column-gap: 12px;
 		justify-content: left;
-		color: var(--color-dark-1);
+		color: var(--color-disabled);
 		width: 52px;
 	}
 	div {
@@ -35,17 +35,14 @@
 		order: var(--order);
 	}
 	.enabled {
-		color: var(--color-dark-8);
+		color: var(--color-dark);
 		font-size: var(--font-size-7);
-	}
-	.found {
-		color: var(--color-secondary-2);
 	}
 	div>div {
 		position: absolute;
 		bottom: 100%;
 		font-size: var(--font-size-4);
-		color: var(--color-dark-4);
+		color: var(--color-disabled);
 	}
 	div>div span {
 		font-weight: 400;

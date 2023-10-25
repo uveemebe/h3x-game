@@ -31,28 +31,6 @@
   --color-dark: #292524;
   --color-dark-transparent: hsl(12, 6%, 15%, 0.2);
   --color-disabled: hsl(25, 5%, 45%, 0.2);
-
-
-  --color-primary-6: #22c55e;
-  --color-primary-5: #22c55e;/* hsl(121, 50%, 60%);*/
-  --color-primary-4: #86efac; /* hsl(121, 50%, 60%, 0.4);*/
-  --color-primary-3: #bbf7d0; /* hsl(121, 50%, 60%, 0.2);*/
-  --color-primary-2: #d1fae5;
-  --color-secondary-7: #a21caf;
-  --color-secondary-5: #e879f9; /* hsl(301, 50%, 60%); */
-  --color-secondary-4: #f0abfc;
-  --color-secondary-3: #f0abfc; /* hsl(301, 50%, 60%, 0.4);*/
-  --color-secondary-2: #f5d0fe; /* hsl(301, 50%, 60%, 0.2);*/
-  --color-light: hsl(0, 0%, 95%);
-  --color-light-4: hsl(0, 0%, 95%, 0.4);
-  --color-light-6: hsl(0, 0%, 95%, 0.6);
-  --color-dark-1: #f5f5f4;
-  --color-dark-2: #e7e5e4;
-  --color-dark-3: #d6d3d1;
-  --color-dark-4: #a8a29e;
-  --color-dark-6: #57534e;
-  --color-dark-8: #44403c;
-  --color-dark-8-opacity-4: hsl(12, 6%, 15%, 0.4);
 }
 .material-symbols-rounded {
   font-variation-settings:
@@ -110,7 +88,8 @@ button.enabled {
   color: var(--color-dark-8);
 }
 button.selected {
-  border-color: var(--color-secondary);
+  border-color: var(--color-secondary-transparent);
+  color: var(--color-secondary);
 }
 button:active i {
   color: var(--color-dark-3);

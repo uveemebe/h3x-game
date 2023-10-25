@@ -1,10 +1,9 @@
 <script>
 	import { challenge } from "$lib/stores/challenge";
-	import { localStorageChallenges, getPreviousChallenge } from "$lib/stores/localStorageChallenges";
   import { Challenge } from "$lib/challenge.js";
 
   const resetClick = () => {
-    challenge.set(getPreviousChallenge($challenge, $localStorageChallenges));
+    $challenge.undo();
   }
 
   let startDatetime = null;
@@ -12,8 +11,7 @@
   const startResetClick = () => {
     startDatetime = Date.now();
     timeout = setTimeout(() => {
-      localStorageChallenges.set([]);
-      challenge.set(new Challenge());
+      $challenge.undo(true);
     }, 750);
   }
   const endResetClick = () => {
@@ -21,7 +19,7 @@
   }
 </script>
 
-<button class={$localStorageChallenges.length > 0 || $challenge.selectedHexagon ? "enabled" : ""} on:click={resetClick} on:mousedown={startResetClick} on:touchstart={startResetClick} on:mouseup={endResetClick} on:touchend={endResetClick}>
+<button class={$challenge.history.length > 0 || $challenge.selectedHexagon ? "enabled" : ""} on:click={resetClick} on:mousedown={startResetClick} on:touchstart={startResetClick} on:mouseup={endResetClick} on:touchend={endResetClick}>
   <i class="material-symbols-rounded">undo</i>
 </button>
 
