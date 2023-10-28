@@ -10,14 +10,13 @@
 				confetti = '';
 			}, 1000);
 		}
-
 	};
 </script>
 
 <article class={`${confetti} ${hexagon.challenge.state}`}>
 	<!-- svelte-ignore a11y-click-events-have-key-events -->
 	<!-- svelte-ignore a11y-no-static-element-interactions -->
-	<svg class={hexagon.state} on:click={hexagonClick} xmlns="http://www.w3.org/2000/svg" width="76" height="80" >
+	<svg class={hexagon.state} on:click={hexagonClick} xmlns="http://www.w3.org/2000/svg" width="76" height="80">
 		<path stroke="none" fill="var(--color-primary)" d="M36.5 1.0207259421637a7 7 0 0 1 7 0l28.507041555162 16.458548115673a7 7 0 0 1 3.5 6.0621778264911l0 32.917096231345a7 7 0 0 1 -3.5 6.0621778264911l-28.507041555162 16.458548115673a7 7 0 0 1 -7 0l-28.507041555162 -16.458548115673a7 7 0 0 1 -3.5 -6.0621778264911l0 -32.917096231345a7 7 0 0 1 3.5 -6.0621778264911" />
 		{#if hexagon.target}
 			<text class="target" x="50%" y="22%" dominant-baseline="middle" text-anchor="middle" font-family="Roboto Mono" fill="var(--color-dark-1)" dx="2px" dy="2px">{hexagon.target.operations}</text>
@@ -147,7 +146,7 @@
 		transition: 750ms linear;
 		fill: var(--color-text-light);
 	}
-
+	/* Confetti */
 	.confetti {
 		font-family: 'Helvetica', 'Arial', sans-serif;
 		display: inline-block;
@@ -163,8 +162,8 @@
 		transition: transform ease-in 0.1s, box-shadow ease-in 0.25s;
 		z-index: 10;
 	}
-
-	.confetti:before, .confetti:after {
+	.confetti:before,
+	.confetti:after {
 		position: absolute;
 		content: '';
 		display: block;
@@ -175,45 +174,59 @@
 		transition: all ease-in-out 0.5s;
 		background-repeat: no-repeat;
 	}
-
 	.confetti:before {
 		display: block;
 		animation: topBubbles ease-in-out 1s forwards;
 		top: -75%;
-		background-image: radial-gradient(circle, var(--color-secondary) 20%, transparent 20%), radial-gradient(circle, transparent 20%, var(--color-secondary) 20%, transparent 30%), radial-gradient(circle, var(--color-secondary) 20%, transparent 20%), radial-gradient(circle, var(--color-secondary) 20%, transparent 20%), radial-gradient(circle, transparent 10%, var(--color-secondary) 15%, transparent 20%), radial-gradient(circle, var(--color-secondary) 20%, transparent 20%), radial-gradient(circle, var(--color-secondary) 20%, transparent 20%), radial-gradient(circle, var(--color-secondary) 20%, transparent 20%), radial-gradient(circle, var(--color-secondary) 20%, transparent 20%);
+		background-image: radial-gradient(circle, var(--color-secondary) 20%, transparent 20%),
+			radial-gradient(circle, transparent 20%, var(--color-secondary) 20%, transparent 30%),
+			radial-gradient(circle, var(--color-secondary) 20%, transparent 20%),
+			radial-gradient(circle, var(--color-secondary) 20%, transparent 20%),
+			radial-gradient(circle, transparent 10%, var(--color-secondary) 15%, transparent 20%),
+			radial-gradient(circle, var(--color-secondary) 20%, transparent 20%),
+			radial-gradient(circle, var(--color-secondary) 20%, transparent 20%),
+			radial-gradient(circle, var(--color-secondary) 20%, transparent 20%),
+			radial-gradient(circle, var(--color-secondary) 20%, transparent 20%);
 		background-size: 10% 10%, 20% 20%, 15% 15%, 20% 20%, 18% 18%, 10% 10%, 15% 15%, 10% 10%, 18% 18%;
 	}
-
 	.confetti:after {
 		display: block;
 		animation: bottomBubbles ease-in-out 1s forwards;
 		bottom: -75%;
-		background-image: radial-gradient(circle, var(--color-secondary) 20%, transparent 20%), radial-gradient(circle, var(--color-secondary) 20%, transparent 20%), radial-gradient(circle, transparent 10%, var(--color-secondary) 15%, transparent 20%), radial-gradient(circle, var(--color-secondary) 20%, transparent 20%), radial-gradient(circle, var(--color-secondary) 20%, transparent 20%), radial-gradient(circle, var(--color-secondary) 20%, transparent 20%), radial-gradient(circle, var(--color-secondary) 20%, transparent 20%);
+		background-image: radial-gradient(circle, var(--color-secondary) 20%, transparent 20%),
+			radial-gradient(circle, var(--color-secondary) 20%, transparent 20%),
+			radial-gradient(circle, transparent 10%, var(--color-secondary) 15%, transparent 20%),
+			radial-gradient(circle, var(--color-secondary) 20%, transparent 20%),
+			radial-gradient(circle, var(--color-secondary) 20%, transparent 20%),
+			radial-gradient(circle, var(--color-secondary) 20%, transparent 20%),
+			radial-gradient(circle, var(--color-secondary) 20%, transparent 20%);
 		background-size: 15% 15%, 20% 20%, 18% 18%, 20% 20%, 15% 15%, 10% 10%, 20% 20%;
 	}
-	@keyframes
-	topBubbles {  0% {
-	background-position: 5% 90%, 10% 90%, 10% 90%, 15% 90%, 25% 90%, 25% 90%, 40% 90%, 55% 90%, 70% 90%;
+	@keyframes topBubbles {
+		0% {
+			background-position: 5% 90%, 10% 90%, 10% 90%, 15% 90%, 25% 90%, 25% 90%, 40% 90%, 55% 90%,
+				70% 90%;
+		}
+		50% {
+			background-position: 0% 80%, 0% 20%, 10% 40%, 20% 0%, 30% 30%, 22% 50%, 50% 50%, 65% 20%,
+				90% 30%;
+		}
+		100% {
+			background-position: 0% 70%, 0% 10%, 10% 30%, 20% -10%, 30% 20%, 22% 40%, 50% 40%, 65% 10%,
+				90% 20%;
+			background-size: 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%;
+		}
 	}
-	50% {
-	background-position: 0% 80%, 0% 20%, 10% 40%, 20% 0%, 30% 30%, 22% 50%, 50% 50%, 65% 20%, 90% 30%;
+	@keyframes bottomBubbles {
+		0% {
+			background-position: 10% -10%, 30% 10%, 55% -10%, 70% -10%, 85% -10%, 70% -10%, 70% 0%;
+		}
+		50% {
+			background-position: 0% 80%, 20% 80%, 45% 60%, 60% 100%, 75% 70%, 95% 60%, 105% 0%;
+		}
+		100% {
+			background-position: 0% 90%, 20% 90%, 45% 70%, 60% 110%, 75% 80%, 95% 70%, 110% 10%;
+			background-size: 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%;
+		}
 	}
-	100% {
-	background-position: 0% 70%, 0% 10%, 10% 30%, 20% -10%, 30% 20%, 22% 40%, 50% 40%, 65% 10%, 90% 20%;
-	background-size: 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%;
-	}
-	}
-	@keyframes
-	bottomBubbles {  0% {
-	background-position: 10% -10%, 30% 10%, 55% -10%, 70% -10%, 85% -10%, 70% -10%, 70% 0%;
-	}
-	50% {
-	background-position: 0% 80%, 20% 80%, 45% 60%, 60% 100%, 75% 70%, 95% 60%, 105% 0%;
-	}
-	100% {
-	background-position: 0% 90%, 20% 90%, 45% 70%, 60% 110%, 75% 80%, 95% 70%, 110% 10%;
-	background-size: 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%;
-	}
-	}
-
 </style>

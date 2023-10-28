@@ -1,13 +1,12 @@
 <script>
-  import { challenge } from '$lib/stores/challenge.js';
 </script>
+
 <header>
   <div class="title">
     <span>H</span><span class="number">3</span><span>X</span>
   </div>
   <div class="menu">
     <button class="enabled"><i class="material-symbols-rounded">bar_chart</i></button>
-    <button class="enabled"><i class="material-symbols-rounded">settings</i></button>
   </div>
 </header>
 

@@ -81,18 +81,18 @@ button {
   pointer-events: none;
   transition: background-color 200ms;
   background-color: transparent;
-  color: var(--color-dark-3);
+  color: var(--color-disabled);
 }
 button.enabled {
   pointer-events: all;
-  color: var(--color-dark-8);
+  color: var(--color-dark);
 }
 button.selected {
   border-color: var(--color-secondary-transparent);
   color: var(--color-secondary);
 }
 button:active i {
-  color: var(--color-dark-3);
+  color: var(--color-disabled);
 }
 button span {
   font-weight: 600;

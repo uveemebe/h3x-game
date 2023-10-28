@@ -1,6 +1,5 @@
 <script>
 	import { challenge } from "$lib/stores/challenge";
-  import { Challenge } from "$lib/challenge.js";
 
   const resetClick = () => {
     $challenge.undo();

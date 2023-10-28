@@ -1,6 +1,4 @@
 <script>
-  import { challenge } from "$lib/stores/challenge.js";
-
   export let operation;
 </script>
 
