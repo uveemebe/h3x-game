@@ -72,4 +72,7 @@ export class Targets extends Array {
 	get found() {
 		return this.every((target) => target.found);
 	}
+	get pending() {
+		return this.filter((target) => !target.found);
+	}
 }
