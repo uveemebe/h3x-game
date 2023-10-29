@@ -17,7 +17,8 @@
 		flex-direction: row;
 		column-gap: 12px;
 		justify-content: left;
-		color: var(--color-disabled);
+		font-weight: 400;
+		color: var(--color-text-dark-disabled);
 		width: 52px;
 	}
 	div {
@@ -29,7 +30,8 @@
 		order: var(--order);
 	}
 	.enabled {
-		color: var(--color-dark);
+		color: var(--color-text-dark);
 		font-size: var(--font-size-7);
+		font-weight: 600;
 	}
 </style>

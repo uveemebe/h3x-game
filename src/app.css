@@ -14,12 +14,13 @@
   --font-size-5: 24px;
   --font-size-6: 28px;
   --font-size-7: 32px;
+  --font-size-8: 36px;
+  --font-size-9: 40px;
 
-  --color-text-dark: #292524;
-  --color-text-dark-shadow: #2925244d;
-  --color-text-light: #ffffff;
-  --color-text-light-shadow: #ffffff4d;
-  --color-text-light-transparent: #ffffffb3;
+  --color-text-dark: hsl(12, 6%, 15%);
+  --color-text-dark-disabled: hsla(12, 6%, 15%, 0.3);
+  --color-text-light: hsl(0, 0%, 100%);
+  --color-text-light-disabled: hsla(0, 0%, 100%, 0.5);
 
   --color-primary: #22c55e;
   --color-primary-disabled: #22c55e33;
@@ -29,8 +30,27 @@
   --color-secondary-transparent: #d946ef4d;
 
   --color-dark: #292524;
-  --color-dark-transparent: hsl(12, 6%, 15%, 0.2);
-  --color-disabled: hsl(25, 5%, 45%, 0.2);
+  --color-dark-disabled: #78726d1a;
+  --color-light: #ffffff;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-text-dark: hsl(60, 9%, 98%);
+    --color-text-dark-disabled: hsla(60, 9%, 98%, 0.2);
+    --color-text-light: hsl(12, 6%, 15%);
+    --color-text-light-disabled: hsla(12, 6%, 15%, 0.5);
+
+    --color-primary: hsl(142, 71%, 45%);
+    --color-primary-disabled: hsla(142, 71%, 45%, 0.2);
+    --color-primary-transparent: hsla(142, 71%, 45%, 0.3);
+
+    --color-secondary: hsl(292, 84%, 61%);
+    --color-secondary-transparent: hsla(292, 84%, 61%, 0.3);
+
+    --color-dark: hsl(60, 9%, 98%);
+    --color-dark-disabled: hsl(60, 9%, 98%, 0.1);
+    --color-light: hsl(12, 6%, 15%);
+  }
 }
 .material-symbols-rounded {
   font-variation-settings:
@@ -60,6 +80,7 @@ body {
   font-family: var(--font-family);
   font-size: 24px;
   font-weight: 600;
+  background-color: var(--color-light);
 }
 
 article {
@@ -74,25 +95,24 @@ button {
   align-items: center;
   border-radius: 50%;
   cursor: pointer;
-  border: solid 1px var(--color-dark-1);
+  border: solid 1px var(--color-dark-disabled);
   outline: none;
   box-shadow: none;
   -webkit-tap-highlight-color: transparent;
   pointer-events: none;
   transition: background-color 200ms;
   background-color: transparent;
-  color: var(--color-disabled);
+  color: var(--color-text-dark-disabled);
 }
 button.enabled {
   pointer-events: all;
-  color: var(--color-dark);
+  color: var(--color-text-dark);
 }
 button.selected {
-  border-color: var(--color-secondary-transparent);
-  color: var(--color-secondary);
+  background-color: var(--color-secondary-transparent);
 }
 button:active i {
-  color: var(--color-disabled);
+  color: var(--color-dark-disabled);
 }
 button span {
   font-weight: 600;

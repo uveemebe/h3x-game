@@ -6,7 +6,9 @@
     <span>H</span><span class="number">3</span><span>X</span>
   </div>
   <div class="menu">
-    <button class="enabled"><i class="material-symbols-rounded">bar_chart</i></button>
+    <button class="enabled"><i class="material-symbols-outlined" style="font-size: var(--font-size-4);">question_mark</i></button>
+    <button class="enabled"><i class="material-symbols-outlined">bar_chart</i></button>
+    <button class="enabled"><i class="material-symbols-outlined">settings</i></button>
   </div>
 </header>
 
@@ -14,8 +16,10 @@
 <style>
   header {
     display: flex;
-    height: 48px;
     justify-content: space-between;
+    padding-bottom: 8px;
+    border-bottom: solid 1px var(--color-dark-disabled);
+    color: var(--color-text-dark);
   }
   div {
     display: flex;
@@ -24,11 +28,8 @@
     align-items: center;
   }
   div.title {
-    padding-left: 8px;
     justify-content: left;
-  }
-  div.title span {
-    font-size: var(--font-size-7);
+    font-size: var(--font-size-8);
   }
   span.number {
     color: var(--color-secondary);

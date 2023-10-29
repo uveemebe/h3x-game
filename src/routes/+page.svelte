@@ -38,6 +38,7 @@
     /* targets */
     section.targets {
         height: 40px;
+        margin-top: 16px;
         margin-bottom: 8px;
     }
     /* hexagons */

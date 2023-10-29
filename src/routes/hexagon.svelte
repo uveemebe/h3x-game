@@ -19,15 +19,15 @@
 	<svg class={hexagon.state} on:click={hexagonClick} xmlns="http://www.w3.org/2000/svg" width="76" height="80">
 		<path stroke="none" fill="var(--color-primary)" d="M36.5 1.0207259421637a7 7 0 0 1 7 0l28.507041555162 16.458548115673a7 7 0 0 1 3.5 6.0621778264911l0 32.917096231345a7 7 0 0 1 -3.5 6.0621778264911l-28.507041555162 16.458548115673a7 7 0 0 1 -7 0l-28.507041555162 -16.458548115673a7 7 0 0 1 -3.5 -6.0621778264911l0 -32.917096231345a7 7 0 0 1 3.5 -6.0621778264911" />
 		{#if hexagon.target}
-			<text class="target" x="50%" y="22%" dominant-baseline="middle" text-anchor="middle" font-family="Roboto Mono" fill="var(--color-dark-1)" dx="2px" dy="2px">{hexagon.target.operations}</text>
+			<text class="target" x="50%" y="22%" dominant-baseline="middle" text-anchor="middle" font-family="Quicksand" font-weight="400" fill="var(--color-dark-disabled)" dx="2px" dy="2px">{hexagon.target.operations}</text>
 		{/if}
 		{#if hexagon.operationValue === null}
-			<text class="value" x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Quicksand" font-weight="600" fill="var(--color-dark-8)" dx="2px" dy="2px">{hexagon.value}</text>
+			<text class="value" x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Quicksand" font-weight="500" fill="var(--color-text-dark)" dx="2px" dy="2px">{hexagon.value}</text>
 		{:else}
-			<text out:fade class="value" x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Quicksand" font-weight="600" fill="var(--color-dark-1)" dx="2px" dy="2px">{hexagon.value}</text>
+			<text out:fade class="value" x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Quicksand" font-weight="500" fill="var(--color-text-dark)" dx="2px" dy="2px">{hexagon.value}</text>
 		{/if}
 		{#if hexagon.operationValue !== null}
-			<text class="operationValue" x="50%" y="74%" dominant-baseline="middle" text-anchor="middle" font-family="Quicksand" fill="var(--color-dark-1)" dx="2px" dy="2px">{hexagon.operationValue}</text>
+			<text class="operationValue" x="50%" y="74%" dominant-baseline="middle" text-anchor="middle" font-family="Quicksand" font-weight="400" fill="var(--color-dark-disabled)" dx="2px" dy="2px">{hexagon.operationValue}</text>
 		{/if}
 	</svg>
 </article>
@@ -46,13 +46,13 @@
 	}
 	text.operationValue {
 		font-size: var(--font-size-3);
-		fill: var(--color-text-light-transparent);
+		fill: var(--color-text-light-disabled);
 		z-index: 1;
 	}
 	text.target {
 		font-size: var(--font-size-3);
 		font-weight: 400;
-		fill: var(--color-text-light-transparent);
+		fill: var(--color-text-light-disabled);
 	}
 	/* Disabled */
 	path {
@@ -62,9 +62,8 @@
 	}
 	text {
 		fill: var(--color-primary-transparent);
-		font-weight: 500;
 		transition: 100ms linear;
-		--shadow: 0px 0px 8px var(--color-text-dark-shadow), 0px 0px 16px var(--color-text-dark-shadow);
+		--shadow: 0px 0px 8px var(--color-text-dark-disabled), 0px 0px 16px var(--color-text-dark-disabled);
 	}
 	/* Enabled */
 	.enabled {
@@ -112,7 +111,7 @@
 		pointer-events: none;
 	}
 	.locked path {
-		fill: var(--color-disabled);
+		fill: var(--color-dark-disabled);
 	}
 	.locked text {
 		fill: var(--color-secondary-transparent);
@@ -132,10 +131,10 @@
 	}
 	/* Found Locked */
 	.locked.found path {
-		fill: var(--color-disabled);
+		fill: var(--color-dark-disabled);
 	}
 	.locked.found text {
-		fill: var(--color-dark-transparent);
+		fill: var(--color-text-dark-disabled);
 		text-shadow: none;
 	}
 	.finished .locked.found path {
