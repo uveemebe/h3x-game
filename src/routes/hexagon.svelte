@@ -63,7 +63,6 @@
 	text {
 		fill: var(--color-primary-transparent);
 		transition: 100ms linear;
-		--shadow: 0px 0px 8px var(--color-text-dark-disabled), 0px 0px 16px var(--color-text-dark-disabled);
 	}
 	/* Enabled */
 	.enabled {
@@ -75,7 +74,7 @@
 	}
 	.enabled text.value {
 		fill: var(--color-text-light);
-		text-shadow: var(--shadow);
+		text-shadow: var(--text-shadow);
 	}
 	/* Selected */
 	.selected path {
@@ -83,7 +82,7 @@
 	}
 	.selected text.value {
 		fill: var(--color-text-light);
-		text-shadow: var(--shadow);
+		text-shadow: var(--text-shadow);
 	}
 	/* Pressed */
 	.pressed {
@@ -127,7 +126,7 @@
 	}
 	.found text.value {
 		fill: var(--color-text-light);
-		text-shadow: var(--shadow);
+		text-shadow: var(--text-shadow);
 	}
 	/* Found Locked */
 	.locked.found path {

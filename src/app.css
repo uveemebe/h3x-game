@@ -20,7 +20,7 @@
   --color-text-dark: hsl(12, 6%, 15%);
   --color-text-dark-disabled: hsla(12, 6%, 15%, 0.3);
   --color-text-light: hsl(0, 0%, 100%);
-  --color-text-light-disabled: hsla(0, 0%, 100%, 0.5);
+  --color-text-light-disabled: hsla(0, 0%, 100%, 0.7);
 
   --color-primary: #22c55e;
   --color-primary-disabled: #22c55e33;
@@ -31,7 +31,12 @@
 
   --color-dark: #292524;
   --color-dark-disabled: #78726d1a;
+  --color-dark-transparent: hsla(24, 5%, 64%, 0.1);
   --color-light: #ffffff;
+
+  --color-button: #fafaf9;
+
+  --text-shadow: 0px 0px 8px var(--color-text-dark-disabled), 0px 0px 16px var(--color-text-dark-disabled);
 }
 @media (prefers-color-scheme: dark) {
   :root {
@@ -48,8 +53,13 @@
     --color-secondary-transparent: hsla(292, 84%, 61%, 0.3);
 
     --color-dark: hsl(60, 9%, 98%);
-    --color-dark-disabled: hsl(60, 9%, 98%, 0.1);
+    --color-dark-disabled: hsl(60, 9%, 98%, 0.05);
+    --color-dark-transparent: hsla(24, 5%, 64%, 0.1);
     --color-light: hsl(12, 6%, 15%);
+
+    --color-button: hsla(24, 10%, 10%, 0.75);
+
+    --text-shadow: none;
   }
 }
 .material-symbols-rounded {
@@ -79,7 +89,7 @@ body {
   justify-content: center;
   font-family: var(--font-family);
   font-size: 24px;
-  font-weight: 600;
+  font-weight: 500;
   background-color: var(--color-light);
 }
 
@@ -87,7 +97,7 @@ article {
   position: relative;
 }
 
-button {
+button, a.button {
   display: flex;
   height: 48px;
   width: 48px;
@@ -95,25 +105,27 @@ button {
   align-items: center;
   border-radius: 50%;
   cursor: pointer;
-  border: solid 1px var(--color-dark-disabled);
   outline: none;
-  box-shadow: none;
+  border: none;
+  text-decoration: none;
+  background-color: transparent;
   -webkit-tap-highlight-color: transparent;
   pointer-events: none;
-  transition: background-color 200ms;
-  background-color: transparent;
   color: var(--color-text-dark-disabled);
+  font-weight: 500;
 }
-button.enabled {
+button.enabled, a.button.enabled {
   pointer-events: all;
   color: var(--color-text-dark);
 }
-button.selected {
+button.selected, a.button.selected {
   background-color: var(--color-secondary-transparent);
 }
-button:active i {
-  color: var(--color-dark-disabled);
+button:active, a.button:active {
+  animation: button-pressed 200ms linear;
 }
-button span {
-  font-weight: 600;
+@keyframes button-pressed {
+  from {
+    background-color: var(--color-secondary-transparent);
+  }
 }
