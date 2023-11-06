@@ -1,10 +1,11 @@
 <script>
 	import { fade } from 'svelte/transition';
+	import { settings } from "$lib/stores/settings";
 	export let hexagon;
 	let confetti = '';
 	const hexagonClick = () => {
 		hexagon.click();
-		confetti = hexagon.locked && hexagon.found ? 'confetti' : '';
+		confetti = $settings.animations && hexagon.locked && hexagon.found ? 'confetti' : '';
 		if (confetti === 'confetti') {
 			setTimeout(() => {
 				confetti = '';
@@ -13,7 +14,7 @@
 	};
 </script>
 
-<article class={`${confetti} ${hexagon.challenge.state}`}>
+<article class={`${confetti} ${hexagon.challenge.state}`}{$settings.animations ? ' animated' : ''}>
 	<!-- svelte-ignore a11y-click-events-have-key-events -->
 	<!-- svelte-ignore a11y-no-static-element-interactions -->
 	<svg class={hexagon.state} on:click={hexagonClick} xmlns="http://www.w3.org/2000/svg" width="76" height="80">
@@ -85,7 +86,7 @@
 		text-shadow: var(--text-shadow);
 	}
 	/* Pressed */
-	.pressed {
+	.animated .pressed {
 		animation: pressed-rotate 500ms linear;
 	}
 	@keyframes pressed-rotate {
