@@ -22,12 +22,12 @@
         </div>
     {/each}
 </section>
-<section class="buttons">
+<nav class="buttons">
     {#each $challenge.operations as operation}
         <Operation operation={operation}></Operation>
     {/each}
     <Undo></Undo>
-</section>
+</nav>
 
 <style>
     section {
@@ -59,17 +59,16 @@
         column-gap: 4px;
         justify-content: center;
     }
-    section.buttons {
-        display: flex;
-        flex-direction: row;
-        column-gap: 12px;
-        min-height: 80px;
-    }
     .row+.row {
         margin-top: -20px;
     }
     /* buttons */
-    section.buttons {
+    nav {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        column-gap: 12px;
         min-height: 80px;
     }
 </style>

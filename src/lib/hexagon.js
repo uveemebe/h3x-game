@@ -25,6 +25,9 @@ export class Hexagon extends Statable {
     get others() {
         return this.challenge.hexagons.filter((hexagon) => !hexagon.locked && hexagon.index !== this.index);
     }
+    get state() {
+        return `${super.state} ${this.previousIndexes.length ? 'previous' : ''}`;
+    }
 
     click() {
         this.selected ? this.deselect() : this.select();

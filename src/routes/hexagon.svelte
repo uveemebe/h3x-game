@@ -65,6 +65,9 @@
 		fill: var(--color-primary-transparent);
 		transition: 100ms linear;
 	}
+	.previous text {
+		font-weight: 600;
+	}
 	/* Enabled */
 	.enabled {
 		cursor: pointer;
