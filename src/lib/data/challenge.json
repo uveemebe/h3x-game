@@ -46,19 +46,31 @@
             "index": 7,
             "row": 2,
             "value": 8,
-            "adjacentIndexes": [3, 4, 8]
+            "adjacentIndexes": [3, 4, 8, 10]
         },
         {
             "index": 8,
             "row": 2,
             "value": 2,
-            "adjacentIndexes": [4, 5, 7, 9]
+            "adjacentIndexes": [4, 5, 7, 9, 10, 11]
         },
         {
             "index": 9,
             "row": 2,
-            "value": 6,
-            "adjacentIndexes": [5, 6, 8]
+            "value": 3,
+            "adjacentIndexes": [5, 6, 8, 11]
+        },
+        {
+            "index": 10,
+            "row": 3,
+            "value": 5,
+            "adjacentIndexes": [7, 8, 11]
+        },
+        {
+            "index":11,
+            "row": 3,
+            "value": 7,
+            "adjacentIndexes": [8, 9, 10]
         }
     ],
     "operations": [
@@ -68,6 +80,8 @@
         {"name": "divide"}
     ],
     "targets": [
-        {"index":0, "value": 47, "states": ["enabled"]}
+        {"index":0, "value": 34, "states": ["enabled"]},
+        {"index":0, "value": 47, "states": ["enabled"]},
+        {"index":0, "value": 59, "states": ["enabled"]}
     ]
 }
