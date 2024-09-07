@@ -3,43 +3,43 @@
         {
             "index": 0,
             "row": 0,
-            "value": 1,
+            "value": 3,
             "adjacentIndexes": [1, 3, 4]
         },
         {
             "index": 1,
             "row": 0,
-            "value": 2,
+            "value": 5,
             "adjacentIndexes": [0, 2, 4, 5]
         },
         {
             "index": 2,
             "row": 0,
-            "value": 3,
+            "value": 4,
             "adjacentIndexes": [1, 5, 6]
         },
         {
             "index": 3,
             "row": 1,
-            "value": 4,
+            "value": 8,
             "adjacentIndexes": [0, 4, 7]
         },
         {
             "index": 4,
             "row": 1,
-            "value": 5,
+            "value": 1,
             "adjacentIndexes": [0, 1, 3, 5, 7, 8]
         },
         {
             "index": 5,
             "row": 1,
-            "value": 6,
+            "value": 4,
             "adjacentIndexes": [1, 2, 4, 6, 8, 9]
         },
         {
             "index": 6,
             "row": 1,
-            "value": 7,
+            "value": 9,
             "adjacentIndexes": [2, 5, 9]
         },
         {
@@ -51,13 +51,13 @@
         {
             "index": 8,
             "row": 2,
-            "value": 10,
+            "value": 2,
             "adjacentIndexes": [4, 5, 7, 9]
         },
         {
             "index": 9,
             "row": 2,
-            "value": 25,
+            "value": 6,
             "adjacentIndexes": [5, 6, 8]
         }
     ],
@@ -68,8 +68,6 @@
         {"name": "divide"}
     ],
     "targets": [
-        {"index":0, "value": 153, "states": ["enabled"]},
-        {"index":1, "value": 237, "states": []},
-        {"index":2, "value": 402, "states": []}
+        {"index":0, "value": 47, "states": ["enabled"]}
     ]
 }

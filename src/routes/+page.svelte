@@ -8,7 +8,8 @@
 
 <section class="targets">
     <article>
-        {#each $challenge.targets.pending as target}
+        <!--{#each $challenge.targets.pending as target}-->
+        {#each $challenge.targets as target}
             <Target target={target}></Target>
         {/each}
     </article>

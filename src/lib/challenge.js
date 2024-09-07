@@ -47,7 +47,8 @@ export class Challenge {
     }
 
     get state() {
-        return this.targets.found ? STATES.FINISHED : STATES.STARTED;
+        //return this.targets.found ? STATES.FINISHED : STATES.STARTED;
+        return STATES.STARTED;
     }
 
     save() {

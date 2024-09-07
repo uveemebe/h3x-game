@@ -33,17 +33,17 @@ export class Target extends Statable {
 		this.operations++;
 		const found = this.isFound(selectedHexagon.value);
 		if (found) {
-			this.lock(true);
+			//this.lock(true);
 			this.challenge.targets.find(target => !target.enabled && !target.locked)?.enable();
 			selectedHexagon.lock(this);
 			const notFoundHexagons = this.challenge.hexagons.filter(hexagon => !hexagon.found);
-			if (this.challenge.targets.found) {
-				notFoundHexagons.lock();
-			} else {
+			//if (this.challenge.targets.found) {
+			//	notFoundHexagons.lock();
+			//} else {
 				notFoundHexagons.previousIndexes = [];
 				notFoundHexagons.unlock();
 				notFoundHexagons.enable();
-			}
+			//}
 		}
 	}
 
