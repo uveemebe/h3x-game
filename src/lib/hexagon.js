@@ -61,7 +61,7 @@ export class Hexagon extends Statable {
             selectedOperation.selected = false;
             previousSelectedHexagon.deselect();
             previousSelectedHexagon.lock(false, previousSelectedHexagon.initialValue);
-            this.challenge.enabledTarget.check(this);
+            this.challenge.targets.check(this);
             this.challenge.save();
         }
     }

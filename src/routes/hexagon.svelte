@@ -19,9 +19,6 @@
 	<!-- svelte-ignore a11y-no-static-element-interactions -->
 	<svg class={hexagon.state} on:click={hexagonClick} xmlns="http://www.w3.org/2000/svg" width="76" height="80">
 		<path stroke="none" fill="var(--color-primary)" d="M36.5 1.0207259421637a7 7 0 0 1 7 0l28.507041555162 16.458548115673a7 7 0 0 1 3.5 6.0621778264911l0 32.917096231345a7 7 0 0 1 -3.5 6.0621778264911l-28.507041555162 16.458548115673a7 7 0 0 1 -7 0l-28.507041555162 -16.458548115673a7 7 0 0 1 -3.5 -6.0621778264911l0 -32.917096231345a7 7 0 0 1 3.5 -6.0621778264911" />
-		{#if hexagon.target}
-			<text class="target" x="50%" y="22%" dominant-baseline="middle" text-anchor="middle" font-family="Quicksand" font-weight="400" fill="var(--color-dark-disabled)" dx="2px" dy="2px">{hexagon.target.operations}</text>
-		{/if}
 		{#if hexagon.operationValue === null}
 			<text class="value" x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Quicksand" font-weight="500" fill="var(--color-text-dark)" dx="2px" dy="2px">{hexagon.value}</text>
 		{:else}

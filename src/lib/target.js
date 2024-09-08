@@ -70,6 +70,10 @@ export class Targets extends Array {
 		return this.find((target) => target.isFound(value));
 	}
 
+	check(selectedHexagon) {
+		this.filter((target) => target.enabled).forEach(target => target.check(selectedHexagon));
+	}
+
 	get found() {
 		return this.every((target) => target.found);
 	}

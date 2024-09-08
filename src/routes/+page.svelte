@@ -50,8 +50,6 @@
 		display: flex;
 		flex-direction: row;
 		column-gap: 12px;
-		justify-content: left;
-		width: 52px;
 	}
     /* hexagons */
     .hexagons div {
