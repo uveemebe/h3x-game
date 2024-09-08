@@ -64,13 +64,19 @@
             "index": 10,
             "row": 3,
             "value": 5,
-            "adjacentIndexes": [7, 8, 11]
+            "adjacentIndexes": [7, 8, 11, 12]
         },
         {
             "index":11,
             "row": 3,
             "value": 7,
-            "adjacentIndexes": [8, 9, 10]
+            "adjacentIndexes": [8, 9, 10, 12]
+        },
+        {
+            "index":12,
+            "row": 4,
+            "value": 4,
+            "adjacentIndexes": [11, 12]
         }
     ],
     "operations": [

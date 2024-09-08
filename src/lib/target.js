@@ -36,6 +36,7 @@ export class Target extends Statable {
 			this.lock(true);
 			this.challenge.targets.find(target => !target.enabled && !target.locked)?.enable();
 			selectedHexagon.lock(this);
+			console.log(this);
 			//const notFoundHexagons = this.challenge.hexagons.filter(hexagon => !hexagon.found);
 			//if (this.challenge.targets.found) {
 			//	notFoundHexagons.lock();
